@@ -1,8 +1,8 @@
 import requests
 from datetime import date, datetime
-import sqlite3
 from db import Database
 
+db = Database('my_db.db')
 
 #настройка сервера и даты
 server = 'http://10.53.20.15:8042'
@@ -57,7 +57,6 @@ else:
 
         user_study = (studydate, name, birthday, p_sex, examination, report)
 
-        db = Database('my_db.db')
 
         db.cur.execute("""SELECT studydate, name, birthday FROM list_of_patients WHERE
                        (studydate LIKE ? AND name = ? AND birthday = ?);""", ('%'+studydate[0:10]+'%', name, birthday))
